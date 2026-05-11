@@ -121,33 +121,6 @@ placeholders.forEach((placeholder) => {
 
 // SMOOTH PAGE TRANSITION
 
-document.querySelectorAll("a").forEach((link) => {
-
-    link.addEventListener("click", function(e){
-
-        const href = this.getAttribute("href");
-
-        if(
-            href &&
-            href.includes(".html")
-        ){
-
-            e.preventDefault();
-
-            document.body.style.opacity = "0";
-
-            setTimeout(() => {
-
-                window.location.href = href;
-
-            }, 250);
-
-        }
-
-    });
-
-});
-
 
 // PAGE LOAD ANIMATION
 
@@ -171,16 +144,6 @@ const heroImage = document.querySelector(
 
 if(heroImage){
 
-    window.addEventListener("mousemove", (e) => {
-
-        let x = (window.innerWidth / 2 - e.pageX) / 40;
-
-        let y = (window.innerHeight / 2 - e.pageY) / 40;
-
-        heroImage.style.transform =
-        `translate(${x}px, ${y}px)`;
-
-    });
 
 }
 
@@ -189,37 +152,6 @@ if(heroImage){
 
 const cards = document.querySelectorAll(".card");
 
-cards.forEach((card, index) => {
-
-    card.animate(
-
-        [
-
-            {
-                transform:"translateY(0px)"
-            },
-
-            {
-                transform:"translateY(-5px)"
-            },
-
-            {
-                transform:"translateY(0px)"
-            }
-
-        ],
-
-        {
-
-            duration:4000 + (index * 300),
-
-            iterations:Infinity
-
-        }
-
-    );
-
-});
 
 
 // SOFT SCROLL REVEAL
