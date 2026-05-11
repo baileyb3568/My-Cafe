@@ -1,6 +1,7 @@
-// =========================
-// VELVET ROAST SCRIPT
-// =========================
+// =========================================
+// VELVET ROAST — SCRIPT.JS
+// Modern Cozy Luxury Café
+// =========================================
 
 
 // NAVBAR SCROLL EFFECT
@@ -9,26 +10,36 @@ const navbar = document.querySelector("nav");
 
 window.addEventListener("scroll", () => {
 
-    if(window.scrollY > 50){
+    if(window.scrollY > 40){
 
-        navbar.style.background = "rgba(20,20,20,0.55)";
-        navbar.style.backdropFilter = "blur(18px)";
-        navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,0.25)";
+        navbar.style.background =
+        "rgba(255,255,255,0.88)";
 
-    } else {
+        navbar.style.boxShadow =
+        "0 10px 30px rgba(0,0,0,0.05)";
 
-        navbar.style.background = "rgba(20,20,20,0.25)";
-        navbar.style.boxShadow = "none";
+        navbar.style.backdropFilter =
+        "blur(20px)";
+
+    }
+
+    else{
+
+        navbar.style.background =
+        "rgba(255,255,255,0.65)";
+
+        navbar.style.boxShadow =
+        "none";
 
     }
 
 });
 
 
-// FADE-IN ANIMATION ON SCROLL
+// FADE IN ON SCROLL
 
 const fadeElements = document.querySelectorAll(
-    ".card, .hero-content, .section-title, .contact-box, .image-placeholder"
+    ".fade-in"
 );
 
 const observer = new IntersectionObserver((entries) => {
@@ -37,22 +48,24 @@ const observer = new IntersectionObserver((entries) => {
 
         if(entry.isIntersecting){
 
-            entry.target.classList.add("fade-in");
+            entry.target.classList.add("show");
 
         }
 
     });
 
 }, {
-    threshold: 0.2
+    threshold:0.15
 });
 
-fadeElements.forEach((el) => {
-    observer.observe(el);
+fadeElements.forEach((element) => {
+
+    observer.observe(element);
+
 });
 
 
-// BUTTON HOVER GLOW EFFECT
+// BUTTON HOVER EFFECT
 
 const buttons = document.querySelectorAll(".btn");
 
@@ -60,29 +73,64 @@ buttons.forEach((button) => {
 
     button.addEventListener("mouseenter", () => {
 
-        button.style.boxShadow =
-        "0 0 25px rgba(180,90,90,0.45)";
+        button.style.transform =
+        "translateY(-4px) scale(1.02)";
 
     });
 
     button.addEventListener("mouseleave", () => {
 
-        button.style.boxShadow = "none";
+        button.style.transform =
+        "translateY(0px) scale(1)";
 
     });
 
 });
 
 
-// SMOOTH PAGE TRANSITION EFFECT
+// IMAGE PLACEHOLDER HOVER EFFECT
 
-document.querySelectorAll("a").forEach(link => {
+const placeholders = document.querySelectorAll(
+    ".image-placeholder"
+);
+
+placeholders.forEach((placeholder) => {
+
+    placeholder.addEventListener("mouseenter", () => {
+
+        placeholder.style.transform =
+        "translateY(-6px)";
+
+        placeholder.style.boxShadow =
+        "0 20px 40px rgba(0,0,0,0.08)";
+
+    });
+
+    placeholder.addEventListener("mouseleave", () => {
+
+        placeholder.style.transform =
+        "translateY(0px)";
+
+        placeholder.style.boxShadow =
+        "none";
+
+    });
+
+});
+
+
+// SMOOTH PAGE TRANSITION
+
+document.querySelectorAll("a").forEach((link) => {
 
     link.addEventListener("click", function(e){
 
         const href = this.getAttribute("href");
 
-        if(href && href.endsWith(".html")){
+        if(
+            href &&
+            href.includes(".html")
+        ){
 
             e.preventDefault();
 
@@ -92,7 +140,7 @@ document.querySelectorAll("a").forEach(link => {
 
                 window.location.href = href;
 
-            }, 300);
+            }, 250);
 
         }
 
@@ -101,7 +149,7 @@ document.querySelectorAll("a").forEach(link => {
 });
 
 
-// PAGE LOAD FADE-IN
+// PAGE LOAD ANIMATION
 
 window.addEventListener("load", () => {
 
@@ -109,56 +157,137 @@ window.addEventListener("load", () => {
 
 });
 
-
-// INITIAL BODY STYLE
-
 document.body.style.opacity = "0";
-document.body.style.transition = "opacity 0.5s ease";
+
+document.body.style.transition =
+"opacity 0.4s ease";
 
 
-// SIMPLE FLOATING EFFECT FOR CARDS
+// FLOATING HERO EFFECT
+
+const heroImage = document.querySelector(
+    ".hero-image"
+);
+
+if(heroImage){
+
+    window.addEventListener("mousemove", (e) => {
+
+        let x = (window.innerWidth / 2 - e.pageX) / 40;
+
+        let y = (window.innerHeight / 2 - e.pageY) / 40;
+
+        heroImage.style.transform =
+        `translate(${x}px, ${y}px)`;
+
+    });
+
+}
+
+
+// CARD FLOAT EFFECT
 
 const cards = document.querySelectorAll(".card");
 
 cards.forEach((card, index) => {
 
     card.animate(
+
         [
-            { transform: "translateY(0px)" },
-            { transform: "translateY(-6px)" },
-            { transform: "translateY(0px)" }
+
+            {
+                transform:"translateY(0px)"
+            },
+
+            {
+                transform:"translateY(-5px)"
+            },
+
+            {
+                transform:"translateY(0px)"
+            }
+
         ],
+
         {
-            duration: 4000 + (index * 500),
-            iterations: Infinity
+
+            duration:4000 + (index * 300),
+
+            iterations:Infinity
+
         }
+
     );
 
 });
 
 
-// PARALLAX HERO EFFECT
+// SOFT SCROLL REVEAL
 
 window.addEventListener("scroll", () => {
 
-    const hero = document.querySelector(".hero");
+    const sections = document.querySelectorAll(
+        "section"
+    );
 
-    if(hero){
+    sections.forEach((section) => {
 
-        let offset = window.scrollY * 0.3;
+        const sectionTop =
+        section.getBoundingClientRect().top;
 
-        hero.style.backgroundPositionY = `${offset}px`;
+        if(sectionTop < window.innerHeight - 100){
 
-    }
+            section.style.opacity = "1";
+
+            section.style.transform =
+            "translateY(0px)";
+
+        }
+
+    });
 
 });
+
+
+// INITIAL SECTION STATE
+
+document.querySelectorAll("section").forEach((section) => {
+
+    section.style.opacity = "0";
+
+    section.style.transform =
+    "translateY(30px)";
+
+    section.style.transition =
+    "all 0.8s ease";
+
+});
+
+
+// ACTIVATION DELAY
+
+setTimeout(() => {
+
+    document.querySelectorAll("section").forEach((section) => {
+
+        section.style.opacity = "1";
+
+        section.style.transform =
+        "translateY(0px)";
+
+    });
+
+}, 200);
 
 
 // CONSOLE MESSAGE
 
 console.log(
+
 `
-☕ Velvet Roast Website Loaded Successfully
-Elegant • Cozy • Luxury
+☕ Velvet Roast Loaded Successfully
+
+Modern • Cozy • Luxury Café
+
 `
 );
