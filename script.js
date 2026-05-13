@@ -19,7 +19,7 @@ window.addEventListener("scroll", () => {
         "0 10px 30px rgba(0,0,0,0.05)";
 
         navbar.style.backdropFilter =
-        "blur(20px)";
+        "blur(12px)";
 
     }
 
@@ -195,21 +195,6 @@ document.querySelectorAll("section").forEach((section) => {
 
 });
 
-
-// ACTIVATION DELAY
-
-setTimeout(() => {
-
-    document.querySelectorAll("section").forEach((section) => {
-
-        section.style.opacity = "1";
-
-        section.style.transform =
-        "translateY(0px)";
-
-    });
-
-}, 200);
 
 
 // CONSOLE MESSAGE
