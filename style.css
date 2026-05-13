@@ -217,7 +217,15 @@ nav ul li a:hover::after{
     position:relative;
 
 }
+.page-hero{
 
+    min-height:auto;
+
+    padding-top:160px;
+
+    padding-bottom:60px;
+
+}
 
 /* SUBTLE TOP GLOW */
 
