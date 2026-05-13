@@ -195,6 +195,18 @@ document.querySelectorAll("section").forEach((section) => {
 
 });
 
+// ACTIVATION DELAY
+
+setTimeout(() => {
+
+    document.querySelectorAll("section").forEach((section) => {
+
+        section.style.opacity = "1";
+
+        section.style.transform =
+        "translateY(0px)";
+
+    });
 
 
 // CONSOLE MESSAGE
